@@ -1,0 +1,5 @@
+remeber username and pass git bash:
+
+git config credential.helper store
+
+---------------------------------------
