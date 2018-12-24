@@ -1,0 +1,39 @@
+<h1 (click)="clickEvent()" >Device</h1>  
+
+<table class="table table-hover">
+  <thead>
+    <tr>
+      <th scope="col">#</th>
+      <th scope="col">Type</th>
+      <th scope="col">Name</th>
+      <th scope="col">Action</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor='let device of devices;let i=index'>
+      <td>{{i}}</td>
+      <td>{{device.type}}</td>
+      <td>{{device.name}}</td>
+      <td><span (click)='delete(device.id)'>X</span></td>
+    </tr>
+  </tbody>
+</table>
+
+
+
+<div [ngClass]="show ? 'show' : 'off'">        
+      <hr>
+            
+    Name  <input class='form-control' [(ngModel)]="newDevice.name"  />
+    Type    <select class='form-control' [(ngModel)]="newDevice.type">
+        <option value="Phone">Phone</option>
+        <option value="Tablet">Tablet</option>
+        <option value="Laptop">Laptop</option>
+      </select>
+      
+     <br>
+    <button (click)='addNewDevice()' class='btn btn-danger' >Add new Device</button>
+    <br>
+</div>
+
+

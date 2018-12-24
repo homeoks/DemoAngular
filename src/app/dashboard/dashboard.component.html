@@ -1,0 +1,30 @@
+<div class=''>
+  <div class='row'>
+<div class='col-4'>
+    <span>Welcom user:</span>
+    
+    <h1>{{userProfile.userName}}
+
+        <img style="width:100%;" src='{{userProfile.avatar}}'>
+      </h1>
+    
+      Email:<p>{{userProfile.email}}</p>
+      Sex:<p>{{userProfile.sexType}}</p>
+      Country:<p>{{userProfile.country}}</p>
+      Phone No.:<p>{{userProfile.phoneNumber}}</p>
+    
+</div>
+
+<div class='col-4'>
+ 
+  <app-device></app-device>
+
+</div>
+<div class='col-4'>
+    <app-hobby></app-hobby>
+</div>
+<div class='col-12'>
+    <app-other-user></app-other-user>
+</div>
+</div>
+</div>
