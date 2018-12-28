@@ -25,6 +25,8 @@ export class DeviceComponent implements OnInit {
   }
   addNewDevice(){
     debugger;
+    for(let i=0;i<100;i++){
+      
     this.deviceService.addNewDevices(this.newDevice).subscribe(res=>{
       if(res.isSuccess){
         
@@ -38,6 +40,7 @@ export class DeviceComponent implements OnInit {
       debugger;
       alert(err);
     })
+  }
   }
   
   //toggle show off insert form

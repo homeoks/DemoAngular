@@ -24,10 +24,8 @@ export class LoginComponent implements OnInit {
   login(){
     var model=this.loginModel;
     this.authService.login(model).subscribe((res:ApplicationResults)=>{
-      debugger;
       if(res.isSuccess)
         {
-          debugger;
           this.authService.setLocalStorage(AppConst.accessToken,res.value.access_token);
           this.authService.setLocalStorage(AppConst.refreshToken,res.value.refresh_token);
           this.authService.setLocalStorage(AppConst.userStoge,this.loginModel.username);

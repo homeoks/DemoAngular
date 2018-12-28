@@ -1,30 +1,89 @@
-<div class=''>
-  <div class='row'>
-<div class='col-4'>
-    <a style="text-decoration: none" href="/login"><span>Welcom user:</span></a>
-    
-    <h1>{{userProfile.userName}}
+<div class='background'>
+    <img class='backgroundAvatar' src="{{userProfile.avatar}}">
+    <div class='row contain'>
+        <div class='col-4'>
+            <a style="text-decoration: none" href="/login"><span>Welcom user:</span></a>
 
-        <img style="width:100%;" src='{{userProfile.avatar}}'>
-      </h1>
-    
-      Email:<p>{{userProfile.email}}</p>
-      Sex:<p>{{userProfile.sexType}}</p>
-      Country:<p>{{userProfile.country}}</p>
-      Phone No.:<p>{{userProfile.phoneNumber}}</p>
-    
+            <h1 (click)='clickEvent()'>{{userProfile.userName}}
+            </h1>
+
+            <div [ngClass]="edit ? 'show' : 'off'">
+                <label>Email:</label>
+                <p>{{userProfile.email}}</p>
+                <label>Sex:</label>
+                <p>{{userProfile.sexType}}</p>
+                <label>Country:</label>
+                <p>{{userProfile.country}}</p>
+                <label>Phone No.:</label>
+                <p>{{userProfile.phoneNumber}}</p>
+                <label>Status:</label>
+                <p [ngClass]="statusClass">
+                    {{userProfile.status}}</p>
+            </div>
+            <div [ngClass]="edit ? 'off' : 'show'">
+                <div class='container row'>
+
+                    <div class='col-12'>
+                        <div class="form-group">
+                            <label for="e">email:</label>
+                            <input class="form-control" [(ngModel)]='editProfile.email'>
+                        </div>
+                        <div class="form-group">
+                            <label for="b">phone:</label>
+                            <input class="form-control" [(ngModel)]='editProfile.phone'>
+                        </div>
+                        <div class="form-group">
+                            <label for="c">country:</label>
+
+                            <select class='form-control' [(ngModel)]='editProfile.country'>
+                                <option *ngFor='let country of countries' value="{{country.name}}">{{country.name}}</option>
+                            </select>
+
+                        </div>
+                        <div class="form-group">
+                            <label for="d">fullname:</label>
+                            <input class="form-control" [(ngModel)]='editProfile.fullname'>
+                        </div>
+                        <div class="form-group">
+                            <label for="e">avatar:</label>
+                            <input class="form-control" [(ngModel)]='editProfile.avatar'>
+                        </div>
+                        <div class="form-group">
+                            <label for="f">sex:</label>
+                            <select class='form-control' [(ngModel)]="editProfile.sexType">
+                                <option value="Male">Male</option>
+                                <option value="Female">Female</option>
+                                <option value="Other">Other</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="f">Status:</label>
+                            <select class='form-control' [(ngModel)]="editProfile.status">
+                                <option value="Online">Online</option>
+                                <option value="Offline">Offline</option>
+                                <option value="Busy">Busy</option>
+                                <option value="Afk">Afk</option>
+                            </select>
+                        </div>
+                        <button (click)="editUserProfile()" class='form-control btn btn-danger'>Edit</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class='col-4'>
+
+            <app-device></app-device>
+
+        </div>
+        <div class='col-4'>
+            <app-hobby></app-hobby>
+        </div>
+        <hr>
+        <div class='col-12'>
+            <app-other-user></app-other-user>
+        </div>
+    </div>
+  
 </div>
 
-<div class='col-4'>
- 
-  <app-device></app-device>
-
-</div>
-<div class='col-4'>
-    <app-hobby></app-hobby>
-</div>
-<div class='col-12'>
-    <app-other-user></app-other-user>
-</div>
-</div>
-</div>

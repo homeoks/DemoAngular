@@ -1,0 +1,45 @@
+.show{
+ display: inline;
+}
+.off{
+    display: none;
+}
+.background {
+  display: block;
+  position: relative;
+}
+
+.backgroundAvatar {
+    width: 100%;
+  content: "";
+  size: cover;
+  min-height: 100%;
+  opacity: 0.5;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  position: absolute;
+  z-index: -1;  
+}
+.contain{
+    width: 90% !important;
+    margin-left: 5% !important;
+}
+
+.online{
+    color: blue;
+}
+
+.offline{
+    color: gray;
+}
+
+.busy{
+    color: red;
+}
+
+.afk{
+    color: darkseagreen;
+    text-decoration: line-through
+}

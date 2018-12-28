@@ -1,0 +1,41 @@
+<div class='col-6'>
+<mat-form-field>
+    <input matInput (keyup)="applyFilter($event.target.value)">
+  </mat-form-field>
+
+Search Front End<input (keyup)='searchFE($event)'>
+Search Back End<input (keyup)='searchBE($event)' class='searchBE' [ngModel]='searchBe'>
+
+
+<table mat-table [dataSource]="users" class="table">
+
+    <!-- date Column -->
+    <ng-container matColumnDef="userName">
+      <th mat-header-cell *matHeaderCellDef class="header">UserName</th>
+      <td mat-cell *matCellDef="let element " class="table-cell p-0 ">{{element.userName}}</td>
+    </ng-container>
+
+    <!-- accountName Column -->
+    <ng-container matColumnDef="sexType">
+      <th mat-header-cell *matHeaderCellDef class="header">SexType</th>
+      <td mat-cell *matCellDef="let element " class="table-cell ">{{element.sexType}}</td>
+    </ng-container>
+
+    <!-- amount Column -->
+    <ng-container matColumnDef="country">
+        <th mat-header-cell *matHeaderCellDef class="header">Country</th>
+        <td mat-cell *matCellDef="let element " class="table-cell ">{{element.country}}</td>
+      </ng-container>
+
+      <ng-container matColumnDef="hobbies">
+          <th mat-header-cell *matHeaderCellDef class="header">Hobbies</th>
+          <td mat-cell *matCellDef="let element " class="table-cell ">{{element.hobbies}}</td>
+        </ng-container>
+
+    <tr mat-header-row *matHeaderRowDef="displayedColumns" class="headerRow">wtf</tr>
+    <tr mat-row *matRowDef="let row; columns: displayedColumns; "></tr>
+  </table>
+  <mat-paginator class="paginagion" showFirstLastButtons [length]="pageLength" [pageSize]="pageSize" [pageSizeOptions]="pageSizeOptions"
+    (page)="pageEvent($event)">
+  </mat-paginator>
+</div>

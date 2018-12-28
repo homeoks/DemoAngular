@@ -9,9 +9,8 @@ import { AppComponent } from './app.component';
 import { LoginModule } from './login/login.module';
 import { RegisterComponent } from './register/register.component';
 import { httpInterceptorProviders } from './helper';
-
-
-
+import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
+import { MatTooltipModule } from '@angular/material/tooltip';
 @NgModule({
   declarations: [
     AppComponent,
@@ -19,10 +18,14 @@ import { httpInterceptorProviders } from './helper';
   ],
   imports: [
     BrowserModule,
+    BrowserAnimationsModule,
     AppRoutingModule,
     LoginModule,
     HttpClientModule,
     FormsModule,
+    MatTooltipModule
+  ],
+  exports:[BrowserAnimationsModule,MatTooltipModule
   ],
   providers: [httpInterceptorProviders],
   bootstrap: [AppComponent]

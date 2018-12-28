@@ -1,0 +1,10 @@
+<div id="divMessages" #divMessages class="messages chatDiv" >
+  <div id='messageHistory'>
+
+  </div>
+    <div class="inputzone" style="position: relative;bottom: -5px;">
+        <input [(ngModel)]='message' class="input-zone-input" type="text" />
+        <button id="btnSend" (click)='send()' >Send</button>
+    </div>
+</div>
+ 

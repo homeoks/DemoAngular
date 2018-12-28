@@ -1,0 +1,21 @@
+.chatDiv{
+    position:fixed;
+    top:0;
+    right: 0;
+    flex: 1 1 auto;
+    height: 300px;
+    background: whitesmoke;
+   };
+.input-zone-input{
+    position: relative !important;
+    bottom: 0;
+    left: 0px;
+   }
+
+   .userMessage{
+       text-align: right;
+   }
+   #messageHistory{
+    overflow-y: auto;
+    height: 300px;
+   }

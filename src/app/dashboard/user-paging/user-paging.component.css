@@ -1,0 +1,9 @@
+.paginagion{
+    border: 1px solid #b3b3b3;
+    border-top: none;
+    min-width: 478px;
+}
+
+.mat-option-text{
+    margin-left: 31% !important;
+}
