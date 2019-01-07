@@ -1,6 +1,23 @@
 <!--The content below is only a placeholder and can be replaced.-->
-<div class='body'>
-    
-<router-outlet></router-outlet>
+<button id="btnModal" type="button" class="btn btn-info btn-lg" data-toggle="modal" data-target="#myModal">>></button>
+<div id="myModal" class="modal fade" role="dialog">
+  <div class="modal-dialog modal-xl">
 
-</div>
+    <!-- Modal content-->
+    <div class="modal-content">
+    
+      <div class="modal-body">
+       <app-new-feed></app-new-feed>
+      </div>
+    
+    </div>
+
+  </div> </div>
+  <!-- Modal -->
+
+  <div class='body'>
+
+    <router-outlet></router-outlet>
+
+
+  </div>

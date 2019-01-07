@@ -11,13 +11,14 @@ import { RegisterComponent } from './register/register.component';
 import { httpInterceptorProviders } from './helper';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import { MatTooltipModule } from '@angular/material/tooltip';
+import { NewFeedComponent } from './new-feed/new-feed.component';
 @NgModule({
   declarations: [
     AppComponent,
-    RegisterComponent
+    RegisterComponent,
+    NewFeedComponent
   ],
   imports: [
-    BrowserModule,
     BrowserAnimationsModule,
     AppRoutingModule,
     LoginModule,

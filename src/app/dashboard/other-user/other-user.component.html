@@ -1,101 +1,117 @@
+
+
 <div class='row'>
-  
-  <div class='col-6'>
 
-      <div class=''>
-          <mat-form-field>
-              <input matInput (keyup)="applyFilter($event.target.value)">
-            </mat-form-field>
-          
-          Filter<input (keyup)='searchFE($event)'>
-          Search<input (keyup)='searchBE($event)' class='searchBE' [ngModel]='searchBe'>
-          
-          
-        
-            
-          </div>
+ 
 
-      <table class="table table-hover">
-          <thead>
-            <tr>
-              <th (click)='getBlackList()' scope="col">#</th>
-              <th scope="col">UserName</th>
-              <th scope="col">SexType</th>
-              <th scope="col">Country</th>
-              <th scope="col">Hobbies</th>
-              <th scope="col">Details</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr (click)='detail(user.id)' *ngFor='let user of users'>
-              <td><img style="width:30px;" src='{{user.avatar}}'></td>
-              <th scope="col"  [ngClass]="user.status=='Online' ? 'online' : user.status=='Offline' ? 'offline' : user.status=='Busy' ? 'busy' : 'afk'"> {{user.userName}}</th>
-              <th scope="col" >{{user.sexType}}</th>
-              <th scope="col">{{user.country}}</th>
-              <th scope="col" style=" word-break:break-all;">{{user.hobbies}}</th>
-              <th scope="col" (click)='detail(user.id)'>>>></th>
-            </tr>
-          </tbody>
-        </table>
-        <mat-paginator class="paginagion" showFirstLastButtons [length]="pageLength" [pageSize]="pageSize" [pageSizeOptions]="pageSizeOptions"
-              (page)="pageEvent($event)">
-            </mat-paginator>
-  </div>
-
-  <div class='col-6' >
-    <div *ngIf='otherUser!=null' class='img-thumbnail'>
-         <span (click)='close()'>{{otherUser.isFriend ? "Friended :" : "User :"}}</span>
-         <h1>
-           {{otherUser.userName}}
-           <span (click)='actionUser("Away",otherUser.id)' class='action'>{{otherUser.isAway ? "UnAway" : "Away"}}</span>
-           
-           <span (click)='actionUser(2,otherUser.id)' class='action'>{{otherUser.isBan ? "UnBlock" : "Block"}}</span>
-           <span  (click)='actionUser("Friend",otherUser.id)' class='action'>{{otherUser.isFriend ? "UnFriend" : "Add Friend"}}</span>
+<div class='col-6'>
+    
+    <mat-form-field style="text-align: left;float:right">
+        Search <input matInput (keyup)="searchBE($event)">
+    </mat-form-field>
+  <table mat-table [dataSource]="users" class="table">
       
-           <span *ngIf='otherUser.isFriend' (click)='chat(otherUser.userName)' class='action'>Send message</span>
-            </h1>
-           
-            <img class='pull-right' style="float:left" style="width:35%;" src='{{otherUser.avatar}}'>
-            Email:<p>{{otherUser.email}}</p>
-            Sex:<p>{{otherUser.sexType}}</p>
-            Country:<p>{{otherUser.country}}</p>
-            Phone No.:<p>{{otherUser.phoneNumber}}</p>
-          </div>
+    <ng-container matColumnDef="index">
+      <th (click)='getBlackList()' mat-header-cell *matHeaderCellDef class="header">#</th>
+      <td mat-cell *matCellDef="let element; let i = index;" class="table-cell p-0 ">
+        <img style="width:30px;" src='{{element.avatar}}'>
+      </td>
+    </ng-container>
+
+    <ng-container matColumnDef="userName">
+      <th mat-header-cell *matHeaderCellDef class="header">UserName</th>
+      <td mat-cell *matCellDef="let element " [ngClass]="element.status=='Online' ? 'online' : element.status=='Offline' ? 'offline' : element.status=='Busy' ? 'busy' : 'afk'">
+        {{element.userName}}</td>
+    </ng-container>
+
+    <ng-container matColumnDef="sexType">
+      <th mat-header-cell *matHeaderCellDef class="header">SexType</th>
+      <td mat-cell *matCellDef="let element " class="table-cell ">{{element.sexType}}</td>
+    </ng-container>
+
+    <ng-container matColumnDef="country">
+      <th mat-header-cell *matHeaderCellDef class="header">Country</th>
+      <td mat-cell *matCellDef="let element " class="table-cell ">{{element.country}}</td>
+    </ng-container>
+
+    <ng-container matColumnDef="hobbies">
+      <th mat-header-cell *matHeaderCellDef class="header">Hobbies</th>
+      <td mat-cell *matCellDef="let element " class="table-cell ">{{element.hobbies}}</td>
+    </ng-container>
+
+    <tr mat-header-row *matHeaderRowDef="displayedColumns" class="headerRow">wtf</tr>
+    <tr mat-row *matRowDef="let row; columns: displayedColumns;" (click)='detail(row.id)'></tr>
+  </table>
+  
+  <mat-paginator class="paginagion" showFirstLastButtons [length]="pageLength" [pageSize]="pageSize" [pageSizeOptions]="pageSizeOptions"
+    (page)="pageEvent($event)">
+  </mat-paginator>
+</div>
+<div class='col-6'>
+    <mat-form-field  style="text-align: left;">
+        Search <input matInput (keyup)="searchBE($event)">
+    </mat-form-field>
+  <div *ngIf='otherUser!=null' class='img-thumbnail'>
+    <span (click)='close()'>{{otherUser.isFriend ? "Friended :" : "User :"}}</span>
+    <h1>
+      {{otherUser.userName}}
+      <span (click)='actionUser("Away",otherUser.id)' class='action'>{{otherUser.isAway ? "UnAway" : "Away"}}</span>
+
+      <span (click)='actionUser(2,otherUser.id)' class='action'>{{otherUser.isBan ? "UnBlock" : "Block"}}</span>
+      <span (click)='actionUser("Friend",otherUser.id)' class='action'>{{otherUser.isFriend ? "UnFriend" : "Add
+        Friend"}}</span>
+
+      <span *ngIf='otherUser.isFriend' (click)='chat(otherUser.userName)' class='action'>Send message</span>
+    </h1>
+
+    <img class='pull-right' style="float:left" style="width:35%;" src='{{otherUser.avatar}}'>
+    Email:<p>{{otherUser.email}}</p>
+    Sex:<p>{{otherUser.sexType}}</p>
+    Country:<p>{{otherUser.country}}</p>
+    Phone No.:<p>{{otherUser.phoneNumber}}</p>
   </div>
-  <div class='col-12' *ngIf='blackListUsers?.length > 0'>
+</div>
+<div class='col-12' *ngIf='blackListUsers?.length > 0'>
 
+  <hr>
 
-
-    <table class="table table-hover">
-        <thead>
-          <tr>
-            <th scope="col">#</th>
-            <th scope="col">UserName</th>
-            <th scope="col">SexType</th>
-            <th scope="col">Country</th>
-            <th scope="col">Details</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr (click)='detail(userb.id)' *ngFor='let userb of blackListUsers'>
-            <td><img style="width:30px;" src='{{userb.avatar}}'></td>
-            <th scope="col"  [ngClass]="userb.status=='Online' ? 'online' : userb.status=='Offline' ? 'offline' : userb.status=='Busy' ? 'busy' : 'afk'"> {{userb.userName}}</th>
-            <th scope="col" >{{userb.sexType}}</th>
-            <th scope="col">{{userb.country}}</th>
-            <th scope="col" (click)='detail(userb.id)'>>>></th>
-          </tr>
-        </tbody>
-      </table>
+  <table class="table table-hover">
+    <thead>
+      <tr>
+        <th scope="col">#</th>
+        <th scope="col">UserName</th>
+        <th scope="col">SexType</th>
+        <th scope="col">Country</th>
+        <th scope="col">Details</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr (click)='detail(userb.id)' *ngFor='let userb of blackListUsers'>
+        <td><img style="width:30px;" src='{{userb.avatar}}'></td>
+        <th scope="col" [ngClass]="userb.status=='Online' ? 'online' : userb.status=='Offline' ? 'offline' : userb.status=='Busy' ? 'busy' : 'afk'">
+          {{userb.userName}}</th>
+        <th scope="col">{{userb.sexType}}</th>
+        <th scope="col">{{userb.country}}</th>
+        <th scope="col" (click)='detail(userb.id)'>>>></th>
+      </tr>
+    </tbody>
+  </table>
 </div>
 </div>
 <div [ngClass]="chatPopup == true ? 'display' : 'none'">
-    <div id="divMessages" (dblclick)='chat()' #divMessages class="messages chatDiv" >
-        <div id='messageHistory'>
-      
-        </div>
-          <div class="inputzone" style="position: relative;bottom: -5px;">
-              <input [(ngModel)]='message' class="input-zone-input" type="text" />
-              <button id="btnSend" (click)='send()' >Send</button>
-          </div>
+  <div id="divMessages" (dblclick)='chat()' #divMessages class="messages chatDiv">
+    <div id='messageHistory'>
+
+    </div>
+    <div class="inputzone" style="position: relative;bottom: -5px;">
+      <input [(ngModel)]='message' class="input-zone-input" type="text" />
+      <button id="btnSend" (click)='send()'>Send</button>
+    </div>
+  </div>
+</div>
+
+<div id="main">
+    <div>
+<marquee scrolldelay="30" scrollamount="30" class="animation-top" [ngStyle]="animationTopStyle" id="messageSystem">  Message of System will show here!!!!!!!!!!!!!!!!!!!!!!!</marquee>
       </div>
 </div>

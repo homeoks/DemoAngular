@@ -13,8 +13,8 @@ export class DeviceService {
   }
   apiUrl=environment.apiUrl;
   constructor(private http:HttpClient) { }
-  getDevices(){
-    return this.http.get<ApplicationResults>(this.apiUrl+"Device/GetDevices");
+  getDevices(pageSize,pageIndex){
+    return this.http.get<ApplicationResults>(this.apiUrl+"Device/GetDevices?pageSize="+pageSize+"&pageIndex="+pageIndex);
   }
   addNewDevices(model){
     return this.http.post<ApplicationResults>(this.apiUrl+"Device/AddNewDevice",model);

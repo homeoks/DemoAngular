@@ -61,4 +61,91 @@ td {
    #messageHistory{
     overflow-y: auto;
     height: 300px;
+
    }
+   #messageHistory p{
+       max-width: 200px;
+       word-wrap:break-word;
+       word-break: break-all;
+   }
+
+   #main{
+    height: 40px;
+   }
+
+   .top-bar-container{
+    overflow: hidden;
+    position: relative;
+    height: 44px;
+  }
+  
+  .top-bar{
+    display: flex;
+    flex-wrap: wrap;
+    margin: 0;
+    padding: 0;
+    height: 44px;
+  }
+  
+  .top-bar li{
+    margin: 0px 30px;
+  }
+  
+  .value-up{
+    color: #2cf3db;
+  }
+  
+  .value-down{
+    color: red;
+  }
+  
+  .animation-top{
+    font-weight: bolder;
+    color: red;
+    font-size: 30px;
+    display: flex;
+    flex-wrap: wrap;
+    position: absolute;
+    /* -webkit-animation-name: topCoins;
+    -webkit-animation-duration: 40s;
+    animation-name: topCoins;
+    animation-duration: 40s;
+    animation-iteration-count: infinite;
+    animation-timing-function: linear; */
+  }
+  
+  @-webkit-keyframes topCoins {
+    0% {
+        margin-left: -20%;
+    }
+    70%{
+        opacity: 1;
+    }
+    80%{
+        opacity: 0;
+    }
+    90%{
+        opacity: 0;
+    }
+    100% {  opacity: 0;
+        margin-left: 80%;
+    } 
+}
+  
+  @keyframes topCoins {
+    0% {
+        margin-left: -20%;
+    }
+    70%{
+        opacity: 1;
+    }
+    80%{
+        opacity: 0;
+    }
+    90%{
+        opacity: 0;
+    }
+    100% {  opacity: 0;
+        margin-left: 80%;
+    } 
+}

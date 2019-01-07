@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { UserService } from '../service/user.service';
 import { SignalRService } from '../service/signal-r.service';
+import { retry } from 'rxjs/operators';
 
 @Component({
   selector: 'app-dashboard',
@@ -11,7 +12,7 @@ export class DashboardComponent implements OnInit {
 
   constructor(private userService:UserService,private signalR:SignalRService) { }
   userProfile={userName:'',email:'',avatar:'',sexType:0,country:'',note:'',phoneNumber:'',status:'0'};
-  editProfile={email:'',avatar:'',sexType:0,country:'',note:'',phoneNumber:''};
+  editProfile={email:'',avatar:'',sexType:0,country:'',note:'',phoneNumber:'',status:'0',userName:''};
   ngOnInit() {
     this.loadUserProfile();
   }
@@ -26,11 +27,10 @@ export class DashboardComponent implements OnInit {
     edit=true;
    
   loadUserProfile(): any {
-    this.userService.getUserProfile().subscribe(res=>{
+    this.userService.getUserProfile().pipe().subscribe(res=>{
     
       if(!res.isSuccess)
       {
-        alert(res.errors);
       }
       else
       {
@@ -38,14 +38,17 @@ export class DashboardComponent implements OnInit {
       }
     },
     err=>{
-      alert(err);
     });
   }
   clickEvent(){
      if(this.edit)
     this.loadCountries();
     this.edit = !this.edit;
-   
+    if(this.edit==false){
+      debugger;
+     this.loadUserProfile();
+     this.editProfile=this.userProfile;
+    }
   }
   get statusClass() {
     if(this.userProfile.status=='Online')

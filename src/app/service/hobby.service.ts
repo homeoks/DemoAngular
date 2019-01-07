@@ -10,8 +10,8 @@ export class HobbyService {
  
   constructor(private http:HttpClient) { }
   apiUrl=environment.apiUrl;
-  getHobbies(){
-    return this.http.get<ApplicationResults>(this.apiUrl+'Hobby/GetHobbies');
+  getHobbies(pageIndex,pageSize){
+    return this.http.get<ApplicationResults>(this.apiUrl+'Hobby/GetHobbies?pageIndex='+pageIndex+'&pageSize='+pageSize);
   }
 
   addNewHobby(model){

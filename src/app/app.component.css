@@ -2,3 +2,17 @@
     width: 90%;
     margin-left:5%;
 } */
+
+#btnModal{
+    position: absolute;
+    right: 0;
+    background: none;
+    border: none;
+    z-index: 99999;
+}
+#btnModal:hover{
+    
+}
+#btnModal:active{
+    border: none;
+}

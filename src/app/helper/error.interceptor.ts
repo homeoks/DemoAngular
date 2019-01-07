@@ -3,6 +3,7 @@ import { HttpRequest, HttpHandler, HttpEvent, HttpInterceptor } from '@angular/c
 import { Observable, throwError, Subject } from 'rxjs';
 import { catchError } from 'rxjs/operators';
 import { AuthService } from '../service/auth.service';
+import { AppConst } from '../appConst';
 
 
 
@@ -14,7 +15,8 @@ export class ErrorInterceptor implements HttpInterceptor {
     intercept(request: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
         return next.handle(request).pipe(catchError(err => {
             if (err.status === 401) {
-                var refreshToken= window.localStorage.getItem('refresh_token');
+                debugger;
+                var refreshToken= this.authenticationService.getLocalStorage(AppConst.refreshToken);
                 var model = { grant_type: "refresh_token", refresh_token: refreshToken }
                 if (err.error) {
                     this.authenticationService.logout();
@@ -23,7 +25,14 @@ export class ErrorInterceptor implements HttpInterceptor {
                     }, 2000);
                     return;
                 } else if (model.refresh_token) {
-         
+                    var model = { grant_type: "refresh_token", refresh_token: refreshToken }
+                     this.authenticationService.refreshToken(model).subscribe(res => {
+                        debugger;
+                        location.reload(true);
+                    },err=>{
+                        this.authenticationService.logout();
+                    });
+                  
                 } else {
                     // auto logout if 401 response returned from api
                     this.authenticationService.logout();
